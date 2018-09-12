@@ -41,8 +41,8 @@ module JokerDMAPI
     def query(request, params = {})
       response = query_no_raise request, params
       return response if response[:headers][:status_code] == '0'
-      return response if (request == :logout) && (response[:headers][:status_code] == '1000')
-      raise_response(response)
+      return response if request == :logout && response[:headers][:status_code] == '1000'
+      raise_response response
     end
 
     def tlds
